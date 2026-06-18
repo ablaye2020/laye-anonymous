@@ -26,15 +26,24 @@
             border: 1px solid #2a2a2a;
             text-align: center;
         }
+        .back {
+            color: #555;
+            font-size: 14px;
+            display: block;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .back:hover { color: #aaa; }
         .logo h2 {
             color: #fff;
             font-size: 24px;
             font-weight: 700;
+            margin-top: 5px;
         }
         .logo p {
             color: #555;
             font-size: 14px;
-            margin-top: 4px;
         }
         .pseudo-display {
             background: #1a1a1a;
@@ -61,12 +70,8 @@
             font-family: inherit;
             transition: 0.3s;
         }
-        textarea:focus {
-            border-color: #ff6b6b;
-        }
-        textarea::placeholder {
-            color: #444;
-        }
+        textarea:focus { border-color: #ff6b6b; }
+        textarea::placeholder { color: #444; }
         .btn-send {
             width: 100%;
             padding: 16px;
@@ -80,36 +85,15 @@
             margin-top: 15px;
             transition: 0.3s;
         }
-        .btn-send:hover {
-            transform: scale(1.02);
-        }
-        .btn-send:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        #status {
-            color: #444;
-            font-size: 13px;
-            margin-top: 15px;
-        }
-        .back {
-            color: #555;
-            font-size: 14px;
-            display: block;
-            margin-top: 20px;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .back:hover { color: #aaa; }
-        .footer {
-            color: #222;
-            font-size: 12px;
-            margin-top: 15px;
-        }
+        .btn-send:hover { transform: scale(1.02); }
+        .btn-send:disabled { opacity: 0.5; cursor: not-allowed; }
+        #status { color: #444; font-size: 13px; margin-top: 15px; }
+        .footer { color: #222; font-size: 12px; margin-top: 15px; }
     </style>
 </head>
 <body>
     <div class="container">
+        <a class="back" onclick="history.back()">← Retour</a>
         <div class="logo">
             <h2>✉️ Message anonyme</h2>
             <p>Pose ta question en toute liberté</p>
@@ -122,7 +106,6 @@
         <button class="btn-send" onclick="envoyerMessage()">📨 Envoyer anonymement</button>
 
         <div id="status"></div>
-        <a class="back" onclick="history.back()">← Retour</a>
         <div class="footer">🔒 100% anonyme</div>
     </div>
 
