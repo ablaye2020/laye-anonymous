@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>AskMe - Messages</title>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -14,50 +14,60 @@
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
+
         body {
             background: #f2f2f7;
             min-height: 100vh;
             padding: 20px;
         }
+
         .container {
             max-width: 420px;
             margin: 0 auto;
         }
 
-        /* HEADER avec PLAY / INBOX */
+        /* ===== HEADER ===== */
         .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 10px 0 20px;
         }
+
         .header .nav {
             display: flex;
-            gap: 20px;
+            gap: 24px;
         }
+
         .header .nav span {
             font-size: 18px;
             font-weight: 700;
             color: #ccc;
             cursor: pointer;
             transition: 0.2s;
+            padding-bottom: 4px;
+            border-bottom: 3px solid transparent;
         }
+
         .header .nav span.active {
             color: #1a1a1a;
+            border-bottom-color: #ff6b6b;
         }
+
         .header .nav span:active {
             transform: scale(0.95);
         }
+
         .header .badge {
             background: #ff6b6b;
             color: white;
             font-size: 11px;
             font-weight: 700;
-            padding: 4px 12px;
+            padding: 4px 14px;
             border-radius: 30px;
         }
 
-        /* PROFIL */
+        /* ===== PROFIL ===== */
         .profile-card {
             background: white;
             border-radius: 30px;
@@ -66,19 +76,23 @@
             margin-bottom: 20px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
+
         .profile-card .pseudo {
             font-size: 24px;
             font-weight: 800;
             color: #1a1a1a;
         }
+
         .profile-card .pseudo span {
             color: #ff6b6b;
         }
+
         .profile-card .sub {
             color: #888;
             font-size: 15px;
             margin-top: 4px;
         }
+
         .profile-card .badge-pop {
             display: inline-block;
             background: linear-gradient(135deg, #ff6b6b, #feca57);
@@ -92,7 +106,7 @@
             letter-spacing: 0.5px;
         }
 
-        /* LIEN */
+        /* ===== LIEN ===== */
         .link-box {
             background: white;
             border-radius: 30px;
@@ -103,6 +117,7 @@
             margin-bottom: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
+
         .link-box .link {
             flex: 1;
             color: #888;
@@ -110,6 +125,7 @@
             word-break: break-all;
             font-family: monospace;
         }
+
         .link-box .copy-btn {
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             border: none;
@@ -122,16 +138,18 @@
             transition: 0.2s;
             white-space: nowrap;
         }
+
         .link-box .copy-btn:active {
             transform: scale(0.95);
         }
 
-        /* SHARE ROW */
+        /* ===== SHARE ROW ===== */
         .share-row {
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
         }
+
         .share-row button {
             flex: 1;
             padding: 14px 10px;
@@ -146,28 +164,33 @@
             justify-content: center;
             gap: 6px;
         }
+
         .share-row button:active {
             transform: scale(0.95);
         }
+
         .btn-wa {
             background: #25D366;
             color: white;
         }
+
         .btn-ig {
             background: linear-gradient(135deg, #f09433, #e6683c, #dc2743);
             color: white;
         }
+
         .btn-copy {
             background: #f2f2f7;
             color: #1a1a1a;
         }
 
-        /* STATS */
+        /* ===== STATS ===== */
         .stats {
             display: flex;
             gap: 12px;
             margin-bottom: 20px;
         }
+
         .stats .stat {
             flex: 1;
             background: white;
@@ -176,16 +199,19 @@
             text-align: center;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
+
         .stats .stat .number {
             font-size: 28px;
             font-weight: 800;
             color: #1a1a1a;
         }
+
         .stats .stat .number span {
             background: linear-gradient(135deg, #ff6b6b, #feca57);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+
         .stats .stat .label {
             color: #888;
             font-size: 11px;
@@ -194,7 +220,33 @@
             margin-top: 2px;
         }
 
-        /* MESSAGES - SANS DATE, STYLE "Qui a envoyé ces 😍" */
+        /* ===== CONTENU DES ONGLETS ===== */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* ===== PLAY (vide) ===== */
+        .play-empty {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            color: #aaa;
+            font-size: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .play-empty .emoji {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        /* ===== MESSAGES (INBOX) ===== */
         .msg-card {
             background: white;
             border-radius: 20px;
@@ -202,10 +254,8 @@
             margin-bottom: 12px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
             animation: slideIn 0.3s ease;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
+
         @keyframes slideIn {
             from {
                 opacity: 0;
@@ -216,29 +266,54 @@
                 transform: translateY(0);
             }
         }
+
         .msg-card .msg {
             font-size: 16px;
             color: #1a1a1a;
             line-height: 1.5;
-            flex: 1;
+            margin-bottom: 12px;
         }
-        .msg-card .action {
-            color: #ff6b6b;
-            font-weight: 700;
-            font-size: 14px;
-            cursor: pointer;
-            white-space: nowrap;
-            margin-left: 12px;
-            background: #f2f2f7;
-            padding: 6px 14px;
+
+        .msg-card .actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .msg-card .actions button {
+            flex: 1;
+            min-width: 100px;
+            padding: 10px 14px;
+            border: none;
             border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
             transition: 0.2s;
         }
-        .msg-card .action:active {
-            background: #e5e5ea;
+
+        .msg-card .actions button:active {
             transform: scale(0.95);
         }
 
+        .btn-indice {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .btn-repondre {
+            background: #f2f2f7;
+            color: #1a1a1a;
+        }
+
+        .msg-card .meta-indice {
+            font-size: 12px;
+            color: #aaa;
+            margin-top: 8px;
+            display: block;
+        }
+
+        /* ===== EMPTY INBOX ===== */
         .empty-msg {
             background: white;
             border-radius: 20px;
@@ -248,12 +323,14 @@
             font-size: 15px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
+
         .empty-msg .emoji {
             font-size: 60px;
             display: block;
             margin-bottom: 12px;
         }
 
+        /* ===== STATUS ===== */
         #status {
             text-align: center;
             color: #aaa;
@@ -261,6 +338,7 @@
             margin: 10px 0 20px;
         }
 
+        /* ===== BOUTON CHANGER ===== */
         .btn-new {
             width: 100%;
             padding: 16px;
@@ -275,54 +353,69 @@
             margin-top: 10px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
         }
+
         .btn-new:active {
             transform: scale(0.98);
         }
 
+        /* ===== FOOTER ===== */
         .footer {
             text-align: center;
             color: #ddd;
             font-size: 12px;
             margin-top: 20px;
         }
+
         .footer a {
             color: #bbb;
             text-decoration: none;
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 400px) {
+            .header .nav span {
+                font-size: 16px;
+            }
+            .msg-card .actions button {
+                font-size: 13px;
+                padding: 8px 12px;
+                min-width: 80px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- HEADER PLAY / INBOX -->
+        <!-- ===== HEADER avec PLAY / INBOX ===== -->
         <div class="header">
             <div class="nav">
-                <span class="active">PLAY</span>
-                <span>INBOX</span>
+                <span class="active" data-tab="play" onclick="switchTab('play')">PLAY</span>
+                <span data-tab="inbox" onclick="switchTab('inbox')">INBOX</span>
             </div>
             <div class="badge" id="unreadBadge">0 non lu</div>
         </div>
 
-        <!-- PROFIL -->
+        <!-- ===== PROFIL ===== -->
         <div class="profile-card">
             <div class="pseudo">@<span id="pseudoDisplay">PSEUDO</span></div>
             <div class="sub">envoie-moi des messages anonymes !</div>
             <span class="badge-pop">❤️ 238 potes sont venus</span>
         </div>
 
-        <!-- LIEN -->
+        <!-- ===== LIEN ===== -->
         <div class="link-box">
             <span class="link" id="lienAffichage">Chargement...</span>
             <button class="copy-btn" onclick="copierLien()">Copier</button>
         </div>
 
-        <!-- SHARE -->
+        <!-- ===== SHARE ===== -->
         <div class="share-row">
             <button class="btn-wa" onclick="partagerWhatsApp()">💬 WhatsApp</button>
             <button class="btn-ig" onclick="partagerInstagram()">📸 Story</button>
             <button class="btn-copy" onclick="copierLien()">📋 Copier</button>
         </div>
 
-        <!-- STATS -->
+        <!-- ===== STATS ===== -->
         <div class="stats">
             <div class="stat">
                 <div class="number"><span id="msgCount">0</span></div>
@@ -336,11 +429,22 @@
 
         <div id="status">⏳ Chargement...</div>
 
-        <!-- MESSAGES -->
-        <div id="messagesContainer">
-            <div class="empty-msg">
-                <span class="emoji">🕊️</span>
-                Aucun message reçu
+        <!-- ===== ONGLET PLAY ===== -->
+        <div id="tab-play" class="tab-content active">
+            <div class="play-empty">
+                <span class="emoji">🎮</span>
+                <p>Joue avec tes amis !</p>
+                <p style="font-size:13px; margin-top:6px;">Partage ton lien pour recevoir des messages</p>
+            </div>
+        </div>
+
+        <!-- ===== ONGLET INBOX ===== -->
+        <div id="tab-inbox" class="tab-content">
+            <div id="messagesContainer">
+                <div class="empty-msg">
+                    <span class="emoji">🕊️</span>
+                    Aucun message reçu
+                </div>
             </div>
         </div>
 
@@ -349,6 +453,7 @@
     </div>
 
     <script>
+        // ===== CONFIGURATION FIREBASE =====
         const firebaseConfig = {
             apiKey: "AIzaSyCmrwHuZhxJRSOAIEB04Bc2xfMiCdIzMIc",
             authDomain: "mon-jeu-anonymous.firebaseapp.com",
@@ -362,10 +467,12 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
+        // ===== RÉCUPÉRATION DU PSEUDO =====
         const params = new URLSearchParams(window.location.search);
         const pseudo = params.get('pseudo');
         let currentUser = null;
         let ancienNombreMessages = 0;
+        let messageCount = 0;
 
         if (pseudo) {
             document.getElementById('pseudoDisplay').textContent = pseudo;
@@ -373,9 +480,12 @@
             document.getElementById('lienAffichage').textContent = lien;
         }
 
+        // ===== FONCTION POUR JOUER LE SON =====
         function jouerSonNotification() {
             try {
                 const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+
+                // Premier son (pop)
                 const osc1 = audioCtx.createOscillator();
                 const gain1 = audioCtx.createGain();
                 osc1.connect(gain1);
@@ -386,6 +496,8 @@
                 gain1.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.15);
                 osc1.start(audioCtx.currentTime);
                 osc1.stop(audioCtx.currentTime + 0.15);
+
+                // Deuxième son (ding) avec un léger délai
                 setTimeout(() => {
                     const osc2 = audioCtx.createOscillator();
                     const gain2 = audioCtx.createGain();
@@ -397,10 +509,29 @@
                     gain2.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
                     osc2.start(audioCtx.currentTime);
                     osc2.stop(audioCtx.currentTime + 0.1);
-                }, 100);
-            } catch (e) {}
+                }, 120);
+
+                // Troisième son (vibration douce) pour un effet plus pro
+                setTimeout(() => {
+                    const osc3 = audioCtx.createOscillator();
+                    const gain3 = audioCtx.createGain();
+                    osc3.connect(gain3);
+                    gain3.connect(audioCtx.destination);
+                    osc3.frequency.value = 660;
+                    osc3.type = 'sine';
+                    gain3.gain.setValueAtTime(0.08, audioCtx.currentTime);
+                    gain3.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+                    osc3.start(audioCtx.currentTime);
+                    osc3.stop(audioCtx.currentTime + 0.08);
+                }, 200);
+
+            } catch (e) {
+                // Silencieux si l'API Audio n'est pas supportée
+                console.log('🔇 Son non supporté');
+            }
         }
 
+        // ===== AUTHENTIFICATION =====
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 currentUser = user;
@@ -414,6 +545,7 @@
             }
         });
 
+        // ===== VÉRIFICATION DU PROPRIÉTAIRE =====
         function verifierProprietaire(pseudo) {
             database.ref('boites/' + pseudo).once('value').then((snapshot) => {
                 const data = snapshot.val();
@@ -431,6 +563,7 @@
             });
         }
 
+        // ===== CHARGEMENT DES MESSAGES EN TEMPS RÉEL =====
         function chargerMessages(pseudo) {
             const messagesRef = database.ref('boites/' + pseudo + '/messages');
             messagesRef.on('value', (snapshot) => {
@@ -440,33 +573,38 @@
                 const badgeEl = document.getElementById('unreadBadge');
 
                 if (!data) {
-                    container.innerHTML =
-                        `
-                    <div class="empty-msg">
-                        <span class="emoji">🕊️</span>
-                        Aucun message reçu
-                    </div>
+                    container.innerHTML = `
+                        <div class="empty-msg">
+                            <span class="emoji">🕊️</span>
+                            Aucun message reçu
+                        </div>
                     `;
                     countEl.textContent = '0';
                     document.getElementById('unreadCount').textContent = '0';
                     badgeEl.textContent = '0 non lu';
                     ancienNombreMessages = 0;
+                    messageCount = 0;
                     document.getElementById('status').textContent = '✅ Prêt';
                     return;
                 }
 
-                const messages = Object.keys(data).map(key => ({ id: key, ...data[key] }))
-                    .sort((a, b) => b.date - a.date);
+                const messages = Object.keys(data).map(key => ({
+                    id: key,
+                    ...data[key]
+                })).sort((a, b) => b.date - a.date);
 
                 const nouveauNombre = messages.length;
+                messageCount = nouveauNombre;
+
+                // 🔔 JOUER LE SON SI UN NOUVEAU MESSAGE ARRIVE
                 if (nouveauNombre > ancienNombreMessages && ancienNombreMessages > 0) {
                     jouerSonNotification();
-                    document.getElementById('status').textContent = '🔔 Nouveau message !';
+                    document.getElementById('status').textContent = '🔔 Nouveau message reçu !';
                     setTimeout(() => {
-                        document.getElementById('status').textContent = '✅ ' + nouveauNombre +
-                            ' message' + (nouveauNombre > 1 ? 's' : '');
+                        document.getElementById('status').textContent = '✅ ' + nouveauNombre + ' message' + (nouveauNombre > 1 ? 's' : '');
                     }, 2000);
                 }
+
                 ancienNombreMessages = nouveauNombre;
                 countEl.textContent = nouveauNombre;
                 document.getElementById('unreadCount').textContent = nouveauNombre;
@@ -474,29 +612,85 @@
 
                 let html = '';
                 const emojis = ['❤️', '😍', '🔥', '👀', '💯', '✨', '🌟', '🎯'];
+
                 messages.forEach((msg, index) => {
                     const emoji = emojis[index % emojis.length];
                     html += `
                         <div class="msg-card">
                             <div class="msg">${escapeHtml(msg.contenu)}</div>
-                            <div class="action">${emoji} Qui ?</div>
+                            <div class="actions">
+                                <button class="btn-indice" onclick="obtenirIndice('${msg.id}')">
+                                    ${emoji} Qui a envoyé ça ?
+                                </button>
+                                <button class="btn-repondre" onclick="repondreMessage('${msg.id}')">
+                                    ✏️ Répondre
+                                </button>
+                            </div>
+                            <span class="meta-indice">🔎 Obtenez un indice pour découvrir qui a envoyé ce message</span>
                         </div>
                     `;
                 });
+
                 container.innerHTML = html;
-                document.getElementById('status').textContent = '✅ ' + nouveauNombre + ' message' + (
-                    nouveauNombre > 1 ? 's' : '');
+                document.getElementById('status').textContent = '✅ ' + nouveauNombre + ' message' + (nouveauNombre > 1 ? 's' : '');
+
+                // Si l'onglet INBOX n'est pas actif, on le signale visuellement
+                const inboxTab = document.querySelector('[data-tab="inbox"]');
+                if (!inboxTab.classList.contains('active')) {
+                    badgeEl.style.background = '#ff6b6b';
+                    badgeEl.textContent = nouveauNombre + ' non lu 🔴';
+                }
+
             }, (error) => {
                 document.getElementById('status').textContent = '❌ ' + error.message;
             });
         }
 
+        // ===== FONCTIONS UTILITAIRES =====
         function escapeHtml(text) {
             const div = document.createElement('div');
             div.textContent = text;
             return div.innerHTML;
         }
 
+        // ===== SWITCH ENTRE LES ONGLETS =====
+        function switchTab(tab) {
+            // Cacher tous les onglets
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Désactiver tous les liens
+            document.querySelectorAll('.nav span').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            // Activer l'onglet choisi
+            document.getElementById('tab-' + tab).classList.add('active');
+            document.querySelector('[data-tab="' + tab + ']').classList.add('active');
+
+            // Mettre à jour le badge
+            const badgeEl = document.getElementById('unreadBadge');
+            if (tab === 'inbox') {
+                badgeEl.style.background = '#ff6b6b';
+                badgeEl.textContent = messageCount + ' non lu';
+            } else {
+                badgeEl.style.background = '#888';
+                badgeEl.textContent = messageCount + ' non lu';
+            }
+        }
+
+        // ===== ACTIONS SUR LES MESSAGES =====
+        function obtenirIndice(messageId) {
+            alert('🔎 Indice : La personne qui a envoyé ce message est dans tes contacts !');
+            // Tu peux personnaliser cette fonction plus tard
+        }
+
+        function repondreMessage(messageId) {
+            alert('✏️ Tu peux répondre à ce message anonymement !');
+            // Tu peux personnaliser cette fonction plus tard
+        }
+
+        // ===== PARTAGE ET COPIER =====
         function copierLien() {
             const lien = document.getElementById('lienAffichage').textContent;
             navigator.clipboard.writeText(lien).then(() => {
@@ -517,8 +711,12 @@
             alert('📸 Lien copié ! Colle-le dans ta story Instagram 📲');
         }
 
-        function rafraichir() { location.reload(); }
+        // ===== RAFRAÎCHIR =====
+        function rafraichir() {
+            location.reload();
+        }
 
+        // ===== SUPPRIMER LES MESSAGES =====
         function supprimerMessages() {
             if (!confirm('⚠️ Supprimer tous les messages ?')) return;
             if (!pseudo) return;
@@ -530,6 +728,7 @@
                 .catch((error) => alert('❌ ' + error.message));
         }
 
+        // ===== CHANGER DE PSEUDO =====
         function creerNouvelleBoite() {
             localStorage.removeItem('monPseudo');
             window.location.href = 'https://ablaye2020.github.io/laye-anonymous/';
