@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>AskMe - Envoyer</title>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
@@ -13,7 +13,6 @@
             box-sizing: border-box;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
-
         body {
             background: #f2f2f7;
             min-height: 100vh;
@@ -22,15 +21,42 @@
             align-items: center;
             padding: 20px;
         }
-
         .container {
-            max-width: 380px;
+            max-width: 400px;
             width: 100%;
             background: white;
             border-radius: 40px;
-            padding: 40px 25px 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+            padding: 30px 25px 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.06);
             text-align: center;
+        }
+
+        /* IMAGE EN TÊTE */
+        .header-image {
+            width: 100%;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+        .header-image .big-emoji {
+            font-size: 48px;
+            display: block;
+        }
+        .header-image .title {
+            color: white;
+            font-size: 18px;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+        .header-image .sub {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 13px;
         }
 
         .back {
@@ -47,34 +73,13 @@
             color: #1a1a1a;
         }
 
-        .logo .emoji-big {
-            font-size: 52px;
-            display: block;
-            margin-bottom: 4px;
-        }
-        .logo h2 {
-            font-size: 28px;
-            font-weight: 800;
-            color: #1a1a1a;
-        }
-        .logo h2 span {
-            background: linear-gradient(135deg, #ff6b6b, #feca57);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .logo p {
-            color: #888;
-            font-size: 15px;
-            margin-top: 4px;
-        }
-
         .pseudo-display {
             background: #f2f2f7;
             border-radius: 30px;
-            padding: 16px 20px;
-            margin: 25px 0 20px;
+            padding: 14px 20px;
+            margin: 15px 0;
             color: #1a1a1a;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 700;
             letter-spacing: 0.5px;
         }
@@ -84,11 +89,11 @@
 
         textarea {
             width: 100%;
-            height: 140px;
+            height: 120px;
             background: #f2f2f7;
             border: 2px solid transparent;
             border-radius: 24px;
-            padding: 18px 20px;
+            padding: 16px 18px;
             font-size: 16px;
             resize: none;
             outline: none;
@@ -107,15 +112,15 @@
 
         .btn-send {
             width: 100%;
-            padding: 18px;
+            padding: 16px;
             background: linear-gradient(135deg, #ff6b6b, #ee5a24);
             border: none;
             border-radius: 30px;
             color: white;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 18px;
+            margin-top: 15px;
             transition: 0.2s;
         }
         .btn-send:active {
@@ -128,9 +133,9 @@
         }
 
         #status {
-            color: #aaa;
+            color: #bbb;
             font-size: 14px;
-            margin-top: 18px;
+            margin-top: 15px;
             min-height: 22px;
         }
         #status.success {
@@ -141,9 +146,9 @@
         }
 
         .footer {
-            color: #ccc;
+            color: #ddd;
             font-size: 12px;
-            margin-top: 25px;
+            margin-top: 20px;
         }
         .footer span {
             color: #ff6b6b;
@@ -154,10 +159,11 @@
     <div class="container">
         <a class="back" onclick="history.back()">← Retour</a>
 
-        <div class="logo">
-            <span class="emoji-big">✉️</span>
-            <h2>Message <span>anonyme</span></h2>
-            <p>Pose ta question en toute liberté</p>
+        <!-- IMAGE BANNIÈRE -->
+        <div class="header-image">
+            <span class="big-emoji">💬</span>
+            <span class="title">envoie-moi des messages anonymes !</span>
+            <span class="sub">Khalé yi kone da nio teudie na niou ni ❤️😍😍</span>
         </div>
 
         <div class="pseudo-display">
